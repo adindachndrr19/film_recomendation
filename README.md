@@ -1,28 +1,114 @@
-# Laporan Proyek Machine Learning -  Muhammad Nurul Fatwa Al Fajar
+# Laporan Proyek Machine Learning -  Adinda Chandra Ayu Kusumawardhana
 
 ## Project Overview
-![55e257ed-234a-441b-a94c-efd19ad2aedf](https://github.com/user-attachments/assets/b05a4903-136a-4196-8ab5-09bbd195071e)
+![Film](https://github.com/user-attachments/assets/8d88be1f-b881-41c3-a158-3accf4041b41)
 
-Bagi kalian yang belum mengetahui, Anime adalah animasi khas Jepang, Berasal dari serapan kata "Animation"[[1](https://id.wikipedia.org/wiki/Anime#:~:text=4.2%20Bacaan%20terkait-,Definisi%20dan%20penggunaan,animasi%20yang%20dibuat%20di%20Jepang%22.)]( telah menjadi tontonan favorit di berbagai kalangan dan kini dapat diakses melalui banyak platform streaming. Meski begitu, banyaknya judul yang tersedia terkadang menyulitkan pengguna aplikasi dalam memilih anime yang sesuai dengan preferensi mereka masing masing. Untuk mengatasi permasalahan ini, pada penelitian ini mengajukan pengembangan sistem rekomendasi[[2](https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/20612/19925)]. Sistem ini dirancang untuk menganalisis riwayat tontonan pengguna, genre yang disukai, serta penilaian yang pernah diberikan. Berdasarkan data tersebut, sistem dapat menyarankan anime yang paling sesuai dengan selera individu[[3](https://journal.mediapublikasi.id/index.php/logic/article/view/4299)].
+## Project Overview: Film Recommendation System
 
-Tak hanya itu, elemen tambahan seperti tingkat popularitas, ulasan dari pengguna lain, dan rekomendasi dari komunitas juga akan menjadi pertimbangan dalam sistem ini. Pendekatan ini diharapkan memberikan manfaat besar, baik bagi pengguna maupun penyedia layanan streaming. Bagi pengguna, sistem ini memungkinkan mereka menemukan anime baru yang sesuai minat, menjelajahi genre yang belum pernah ditonton, dan mendapatkan rekomendasi sesuai dengan suasana hati mereka. Sementara bagi perusahaan, sistem ini berpotensi meningkatkan jumlah penonton, menyajikan konten yang lebih bervariasi, meningkatkan kepuasan pengguna, serta memahami pola preferensi penonton terhadap anime.
+### Tujuan
 
-Secara keseluruhan, sistem rekomendasi ini dapat menjadi solusi yang efektif dalam membantu pengguna dalam menemukan judul anime yang cocok dengan minat mereka, sekaligus meningkatkan kualitas pengalaman menonton secara menyeluruh[[4](https://www.researchgate.net/publication/274712918_Rekomendasi_Anime_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre)].
+Membangun sebuah **sistem rekomendasi film berbasis konten (content-based filtering)** yang dapat menyarankan film serupa berdasarkan data metadata seperti genre, skor, dan sinopsis. Sistem ini diimplementasikan menggunakan Python dan dieksekusi melalui Google Colab.
+
+---
+
+### Dataset
+
+Dataset diambil dari Kaggle:
+📦 **"Movies Updated Data"** oleh [Ashish Kumar Jayswal](https://www.kaggle.com/datasets/ashishkumarjayswal/movies-updated-data)
+File utama: `movies_updated.csv`
+
+Isi dataset:
+
+* 25 kolom seperti: `Name`, `Genre`, `Score`, `Director`, `Votes`, `Budget`, `Gross`, `Runtime`, dll.
+* Fokus utama hanya pada kolom: `Name`, `Score`, `Genre`, `Company`, `Star`.
+
+---
+
+### Langkah-Langkah Proyek
+
+1. **Inisialisasi & Setup**
+
+   * Menghubungkan Google Drive dan menyiapkan API Kaggle untuk mengunduh dataset.
+   * Melakukan unzip dan membaca file `.csv` dengan Pandas.
+
+2. **Data Understanding**
+
+   * Menampilkan statistik dasar: jumlah data, informasi kolom, tipe data.
+   * Mengecek missing values dan struktur konten data.
+
+3. **Preprocessing**
+
+   * Membersihkan teks dan menggabungkan beberapa fitur deskriptif untuk dijadikan input.
+   * Menggabungkan kolom seperti `Genre`, `Star`, `Company`, dan `Director` menjadi satu string sebagai basis pencocokan konten.
+
+4. **Ekstraksi Fitur**
+
+   * Menggunakan **TF-IDF Vectorizer** untuk mengubah teks menjadi vektor numerik.
+   * Menerapkan **Cosine Similarity** untuk mengukur kemiripan antar film.
+
+5. **Sistem Rekomendasi**
+
+   * Implementasi fungsi untuk merekomendasikan 10 film berdasarkan film input pengguna.
+
+6. **Evaluasi (Opsional)**
+
+   * Terdapat library untuk evaluasi clustering seperti:
+
+     * `calinski_harabasz_score`
+     * `davies_bouldin_score`
+   * Namun, tidak terlihat adanya analisis evaluasi model secara eksplisit dalam output awal.
+
+---
+
+### Algoritma dan Teknologi
+
+* **TF-IDF (Term Frequency-Inverse Document Frequency)**: Teknik representasi teks untuk mengukur pentingnya kata dalam dokumen.
+* **Cosine Similarity**: Metode pengukuran kemiripan antar dua vektor dalam ruang multidimensi.
+* **Nearest Neighbors** (sklearn): Siap digunakan untuk pendekatan KNN atau pengelompokan alternatif.
+* **Matplotlib & Seaborn**: Visualisasi data.
+
+---
+
+### Referensi Jurnal dan Teori
+
+1. **Content-Based Recommendation**
+
+   * Lops, P., de Gemmis, M., & Semeraro, G. (2011). *Content-based recommender systems: State of the art and trends*. In Recommender Systems Handbook.
+     [https://doi.org/10.1007/978-0-387-85820-3\_3](https://doi.org/10.1007/978-0-387-85820-3_3)
+
+2. **TF-IDF and Text Similarity**
+
+   * Ramos, J. (2003). *Using TF-IDF to determine word relevance in document queries*.
+     Proceedings of the First Instructional Conference on Machine Learning.
+
+3. **Recommender System Overview**
+
+   * Ricci, F., Rokach, L., & Shapira, B. (2015). *Recommender Systems: Introduction and Challenges*. In Recommender Systems Handbook.
+
+---
+
+### 📌 Catatan Tambahan
+
+* Proyek ini cocok sebagai studi kasus awal dalam bidang **Rekomendasi Berbasis Konten**.
+* Dapat dikembangkan ke sistem **Hybrid** dengan Collaborative Filtering di masa depan.
+* Perluasan dengan evaluasi metrik seperti precision\@k dan recall\@k bisa menjadi langkah lanjutan.
+
+---
 
 
 ## Business Understanding
-Sistem rekomendasi anime berpotensi memberikan berbagai manfaat signifikan, baik bagi penonton maupun penyedia layanan streaming. Bagi pengguna, sistem ini mempermudah dalam menemukan anime yang sesuai dengan minat secara lebih praktis dan efektif. Sementara itu, bagi platform streaming, sistem ini dapat meningkatkan interaksi pengguna, memperkuat loyalitas penonton, serta membantu operasional platform menjadi lebih efisien dan responsif terhadap kebutuhan pengguna.[[5](http://repository.uin-malang.ac.id/18842/1/18842.pdf)]
+Sistem rekomendasi film berpotensi memberikan berbagai manfaat signifikan, baik bagi penonton maupun penyedia layanan streaming. Bagi pengguna, sistem ini mempermudah dalam menemukan film yang sesuai dengan minat secara lebih praktis dan efektif. Sementara itu, bagi platform streaming, sistem ini dapat meningkatkan interaksi pengguna, memperkuat loyalitas penonton, serta membantu operasional platform menjadi lebih efisien dan responsif terhadap kebutuhan pengguna.[[5](http://repository.uin-malang.ac.id/18842/1/18842.pdf)]
 
 ## Problem Statements
-- Bagaimana membangun sistem rekomendasi anime yang menyarankan tontonan kepada pengguna dengan mengacu pada genre yang diminati?
-- Bagaimana penyedia layanan streaming dapat menyarankan anime yang belum pernah ditonton oleh pengguna dengan memanfaatkan data penilaian yang telah diberikan?
+- Bagaimana membangun sistem rekomendasi film yang menyarankan tontonan kepada pengguna dengan mengacu pada genre yang diminati?
+- Bagaimana penyedia layanan streaming dapat menyarankan film yang belum pernah ditonton oleh pengguna dengan memanfaatkan data penilaian yang telah diberikan?
 - Bagaimana membangun model rekomendasi menggunakan pendekatan Cosine Similarity dan algoritma K-Nearest Neighbor?
 - Bagaimana mengevaluasi kinerja dari model sistem rekomendasi yang sudah dikembangkan?
 
 ## Goals
 Untuk menangani permasalahan tersebut, dirancanglah sebuah sistem rekomendasi dengan tujuan sebagai berikut :
-- Menyajikan daftar Top-N rekomendasi anime kepada pengguna berdasarkan genre yang diminati.
-- Memberikan sejumlah rekomendasi anime yang relevan dengan minat pengguna dan belum pernah ditonton sebelumnya.
+- Menyajikan daftar Top-N rekomendasi film kepada pengguna berdasarkan genre yang diminati.
+- Memberikan sejumlah rekomendasi film yang relevan dengan minat pengguna dan belum pernah ditonton sebelumnya.
 - Mengembangkan model sistem rekomendasi menggunakan pendekatan Cosine Similarity dan K-Nearest Neighbor berdasarkan fitur yang telah diekstraksi dari dataset.
 - Mengevaluasi kinerja model sistem rekomendasi dengan menerapkan metrik pengukuran yang sesuai
 
@@ -36,94 +122,84 @@ EDA - Penjelasan Setiap Variabel
 |----------|-----------------------------------------------------------|
 | Title    | Movies Dataset Visualization                                        |
 | Source   |[Kaggle](https://www.kaggle.com/datasets/ashishkumarjayswal/movies-updated-data)  |
-| Maintainer | [ashishkumarjayswal](kaggle.com/ashishkumarjayswal)                           |
+| Maintainer | [ashishkumarjayswal](https://www.kaggle.com/ashishkumarjayswal)                           |
 | License  | Database: Open Database, Contents: Database Contents      |
 | Visibility | Publik                                                  |
 | Tags     | Movies and TV Shows |
-| Usability | 7.06                                                     |
-
-Dataset yang digunakan dalam proyek ini berasal dari [MyAnimeList](https://myanimelist.net/), sebuah platform komunitas daring yang terkenal di kalangan penggemar anime dan manga. MyAnimeList menyediakan berbagai informasi penting seperti daftar anime, ulasan pengguna, serta skor atau penilaian dari pengguna terhadap berbagai judul anime. 
+| Usability | 7.06                                                     | 
 
 Dataset ini tersedia secara publik di Kaggle dengan nama [movies-updated-data](https://www.kaggle.com/datasets/ashishkumarjayswal/movies-updated-data), dan dapat diakses serta diunduh langsung melalui situs [Kaggle](https://www.kaggle.com/).
 
 Informasi yang terdapat dataset : 
 - Datasets berupa file csv (Comma-Seperated Values).
-- Dataset berupa 6 buah file CSV yaitu :
-  - anime-dataset-2023.csv
-  - anime-filtered.csv
-  - final_animedataset.csv
-  - user-filtered.csv
-  - users-details-2023.csv
-  - users-score-2023.csv
+- Dataset berupa 1 buah file CSV yaitu :
+  - movies_updated.csv
  
-Pada model yang saya buat kali ini dataset yang dipakai dari sekian banyak data adalah file ***anime-filtered.csv***
-- Dataset ini terdiri dari 14.952 entri dan mencakup 25 atribut.
-- Dari total fitur tersebut, terdapat 15 fitur bertipe objek, 8 fitur bertipe int64, serta 2 fitur bertipe float64.
-- Ditemukan missing value pada kolom synopsis sebanyak 1.350 data dan pada kolom ranked sebanyak 1.721 data.
+Pada model yang saya buat kali ini dataset yang dipakai memiliki spesifikasi seperti di bawah ini:
+- Dataset ini terdiri dari 4000 entri dan mencakup 15 atribut.
+- Dari total fitur tersebut, terdapat 10 fitur bertipe objek, 3 fitur bertipe int64, serta 2 fitur bertipe float64.
+- Ditemukan missing value pada kolom gross sebanyak 169 data, pada kolom rating sebanyak 40 data, 10 data pada kolom company, 1 data pada kolom writer dan juga kolom star.
 - Tidak ditemukan adanya data duplikat dalam dataset ini.
 
-### Variabel pada dataset
-1. anime_id: Merupakan identitas unik berupa angka atau kode untuk setiap judul anime.
-2. Name: Nama asli dari anime, biasanya dalam bahasa Jepang.
-3. Score: Nilai atau penilaian yang diberikan untuk anime tersebut.
-4. Genres: Kategori genre dari anime yang ditampilkan, dipisahkan dengan tanda koma (contoh: Aksi, Komedi, Fantasi).
-5. English name: Judul anime dalam versi bahasa Inggris (jika tersedia).
-6. Japanese name: Judul anime dalam penulisan bahasa Jepang.
-7. Synopsis: Ringkasan cerita atau deskripsi singkat mengenai alur cerita anime.
-8. Type: Format atau bentuk dari anime, seperti Serial TV, Film, OVA, dan lainnya.
-9. Episodes: Total jumlah episode yang dimiliki oleh anime.
-10. Aired: Informasi mengenai tanggal atau periode penayangan anime.
-11. Premiered: Musim dan tahun pertama kali anime ditayangkan.
-12. Producers: Nama perusahaan atau pihak yang bertanggung jawab dalam produksi anime.
-13. Licensors: Perusahaan atau platform yang memiliki hak lisensi untuk menayangkan anime.
-14. Studios: Studio animasi yang mengerjakan produksi anime.
-15. Source: Asal cerita dari anime, seperti manga, novel ringan, atau karya orisinal.
-16. Duration: Lama waktu tayang untuk satu episode anime.
-17. Rating: Kategori batas usia penonton yang disarankan.
-18. Ranked: Peringkat anime berdasarkan skor, ulasan, atau kriteria tertentu.
-19. Popularity: Peringkat popularitas berdasarkan jumlah interaksi pengguna.
-20. Members: Jumlah pengguna yang memasukkan anime ke dalam daftar mereka.
-21. Favorites: Jumlah pengguna yang menandai anime sebagai favorit.
-22. Watching: Jumlah pengguna yang sedang menonton anime tersebut.
-23. Completed: Jumlah pengguna yang telah menyelesaikan anime.
-24. On Hold: Jumlah pengguna yang menghentikan sementara tontonan anime.
-25. Dropped: Jumlah pengguna yang memutuskan untuk tidak melanjutkan menonton anime.
+| Kolom        | Tipe Data        | Deskripsi                                                                                     | Cara Pakai di Model                                                                                      |
+| ------------ | ---------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **name**     | `object`         | Judul film.                                                                                   | Sebagai label/ID unik; bisa juga digunakan untuk menampilkan hasil rekomendasi.                          |
+| **rating**   | `float`/`object` | Rating MPAA (misal “PG-13”, “R”, “G”).                                                        | Fitur kategorikal: mengelompokkan konten sesuai batas usia.                                              |
+| **genre**    | `object`         | Kategori/jenis film (misal “Action”, “Comedy”, “Drama”). Bisa berisi beberapa genre per film. | Fitur multi-label: bisa di-encode dengan one-hot atau embedding genre.                                   |
+| **year**     | `int`            | Tahun produksi film.                                                                          | Fitur numerik: mengukur umur film, tren preferensi berdasarkan era.                                      |
+| **released** | `object`         | Tanggal rilis (misal “July 16, 2010”).                                                        | Bisa di-parse jadi tanggal (`datetime`) untuk ekstrak bulan, kuartal, hari dalam seminggu, dll.          |
+| **score**    | `float`          | Skor rata-rata pengguna (misal IMDb score).                                                   | Fitur numerik: merepresentasikan popularitas/penilaian umum film.                                        |
+| **votes**    | `int`            | Jumlah suara atau ulasan pengguna.                                                            | Fitur numerik: proxy untuk seberapa banyak orang yang menilai—indikator popularitas.                     |
+| **director** | `object`         | Nama sutradara.                                                                               | Fitur kategorikal: di-encode (label/one-hot/embedding). Sutradara populer bisa meningkatkan rekomendasi. |
+| **writer**   | `object`         | Nama penulis skenario.                                                                        | Serupa `director`: fitur kategorikal untuk menangkap gaya penulisan.                                     |
+| **star**     | `object`         | Nama aktor/aktris utama.                                                                      | Fitur kategorikal penting—aktor favorit pengguna dapat memengaruhi rekomendasi.                          |
+| **country**  | `object`         | Negara produksi film.                                                                         | Fitur kategorikal: mengelompokkan selera berdasarkan wilayah.                                            |
+| **budget**   | `float`/`int`    | Anggaran pembuatan film (dalam USD).                                                          | Fitur numerik: film ber-anggaran besar cenderung produksi lebih “berkelas” dan populer.                  |
+| **gross**    | `float`/`int`    | Pendapatan box-office (dalam USD).                                                            | Fitur numerik: proxy keberhasilan komersial—sering dikaitkan dengan popularitas massal.                  |
+| **company**  | `object`         | Rumah produksi atau studio (misal “Warner Bros.”).                                            | Fitur kategorikal: studio besar biasanya memproduksi film dengan kualitas/genre tertentu.                |
 
-
-![Distribusi Skor Rata-rata Anime](https://github.com/user-attachments/assets/1babe9de-41e4-45a1-a5db-515a362a1633)
+![gambar1](https://github.com/user-attachments/assets/87fe85b6-b4c3-4c7f-b0f4-1d0abbfb68fb)
 
 Gambar 1.Rating/Skor
 
-![Distribusi Kategori](https://github.com/user-attachments/assets/5dc28b07-21b0-4fcf-9c6b-f66a6f24769b)
+![gambar2](https://github.com/user-attachments/assets/8759ec24-6c23-4223-8334-3a97acd753dc)
 
-Gambar 2. Distribusi Kategori
+Gambar 2. Distribusi Company (perusahaan)
 
-Berdasarkan Gambar 1, diketahui bahwa nilai rata-rata rating anime adalah 6.5, dengan rating terendah sebesar 1.8 dan rating tertinggi mencapai 9.1. Sementara pada Gambar 2, distribusi kategori jenis anime menunjukkan bahwa dataset terdiri dari 6 tipe utama, yaitu: TV, OVA, Movie, Special, ONA, dan Music.TV (Television Series) adalah serial anime yang ditayangkan melalui saluran televisi dengan jumlah episode yang bervariasi. OVA (Original Video Animation) merupakan anime yang dirilis langsung untuk media rumahan seperti DVD atau Blu-ray. Movie adalah anime yang ditayangkan di bioskop dan umumnya memiliki durasi yang lebih panjang. Special merujuk pada episode tambahan atau bonus yang biasanya terhubung dengan serial TV atau film utama. ONA (Original Net Animation) adalah anime yang dirilis secara eksklusif melalui platform daring atau internet. Music merupakan jenis anime yang dibuat untuk mendukung promosi rilisan musik seperti album atau single.
+Gambar di atas menunjukkan **diagram pie distribusi perusahaan produksi film** yang terdapat dalam dataset. Terlihat bahwa mayoritas film (sekitar **77,87%**) diproduksi oleh perusahaan yang termasuk dalam kategori **"Other"**, yaitu perusahaan-perusahaan yang masing-masing memiliki proporsi kecil dan tidak termasuk dalam lima besar. Adapun lima perusahaan produksi film terbesar dalam data ini adalah:
 
-![Anime Komunitas](https://github.com/user-attachments/assets/68504918-8bb8-4867-b1cd-c5067cc406c6)
+* **Universal Pictures** dan **Paramount Pictures** masing-masing menyumbang **5,01%** dari total film,
+* **Columbia Pictures** sebanyak **4,58%**,
+* **Warner Bros.** sebanyak **4,30%**, dan
+* **Twentieth Century Fox** sebanyak **3,24%**.
 
-Gambar 3. Top 15 Anime Community
+Hal ini mengindikasikan bahwa industri film dalam dataset bersifat sangat **terdesentralisasi**, di mana sebagian besar film diproduksi oleh banyak perusahaan kecil yang tersebar, bukan hanya oleh studio-studio besar Hollywood. Analisis seperti ini penting untuk memahami dominasi dan keragaman dalam industri film.
 
-![Skor Anime](https://github.com/user-attachments/assets/80009361-08cc-449b-9176-ae2ef3ba6eab)
 
-Gambar 4. Top 15 Anime Rating Tertinggi 
+![gambar3](https://github.com/user-attachments/assets/038926b0-f8f2-4e71-93fa-d98a73becaae)
 
-Berdasarkan Gambar 3, yang menampilkan Top 15 Komunitas Anime, dapat dilihat bahwa anime Death Note menempati posisi pertama sebagai anime dengan komunitas terbanyak, diikuti oleh Shingeki no Kyojin di posisi kedua, Fullmetal Alchemist: Brotherhood ketiga, Sword Art Online keempat, dan One Punch Man kelima. Selanjutnya, Boku no Hero Academia berada di urutan keenam, Tokyo Ghoul ketujuh, Naruto kedelapan, Steins;Gate kesembilan, dan No Game No Life menempati posisi kesepuluh, kimi no na wa kesebelas, hunter x hunter ke dua belas, Boku no Hero Academia 2nd Season ke tiga belas, Angle Beats! ke empat belas, dan Shingeki no Kyojin Season 2 ke lima belas.
+Gambar 3. Top 15 Vote Terbanyak
 
-Informasi ini dapat dimanfaatkan oleh pengembang sistem untuk merekomendasikan anime yang populer berdasarkan jumlah anggota komunitasnya. Semakin besar komunitas, semakin besar pula indikasi bahwa anime tersebut digemari dan mendapat perhatian dari banyak pengguna.
+![gambar4](https://github.com/user-attachments/assets/34845eba-f792-43ce-930b-c1c8079ad883)
 
-Sedangkan pada Gambar 4, yang menampilkan Top 10 Anime dengan Rating Tertinggi, anime dengan peringkat tertinggi pertama adalah Fullmetal Alchemist: Brotherhood, diikuti oleh Shingeki no Kyojin: Final Season di posisi kedua, Steins;Gate ketiga, Shingeki no Kyojin Season 3 Part 2 keempat, dan Hunter x Hunter (2011) kelima. Di posisi keenam terdapat Gintama°, ketujuh Gintama', kedelapan Ginga Eiyuu Densetsu, kesembilan Gintama': Enchousen, dan kesepuluh adalah 3-gatsu no Lion 2nd Season. kesebelas ada Koe no Katachi, dua belas ada Gintama., ke tiga belas ada Gintama lagi, ke empat belas ada Clannad: After Story, dan Terakhir ke lima belas ada Kimi no Na Wa.
+Gambar 4. Top 15 Film dengan Skor Tertinggi 
 
-Data ini juga dapat dijadikan acuan dalam sistem rekomendasi, karena anime dengan rating tinggi umumnya mencerminkan kualitas cerita dan penerimaan yang baik oleh pengguna. Makin banyak pengguna yang memberikan rating, makin besar kemungkinan bahwa anime tersebut populer dan layak ditonton.
+Gambar di atas menampilkan visualisasi **15 film dengan skor tertinggi** berdasarkan data penilaian pengguna atau rating. Visualisasi ini menggunakan **diagram batang horizontal**, yang memudahkan pembaca untuk membandingkan skor masing-masing film secara langsung. Setiap batang mewakili satu judul film, dengan panjang batang menunjukkan seberapa tinggi skor yang diperoleh film tersebut. Judul-judul film ditampilkan di sumbu vertikal, sementara skor ditampilkan secara horizontal pada sumbu x.
+
+Dari visualisasi ini, film **"The Shawshank Redemption"** terlihat menduduki posisi teratas dengan skor tertinggi di antara semua film dalam daftar. Film ini memang sering dianggap sebagai salah satu film terbaik sepanjang masa, yang menegaskan validitas data yang digunakan. Diikuti oleh film-film lain yang juga sangat populer dan diakui secara kritis, seperti *Schindler's List*, *Pulp Fiction*, *Forrest Gump*, dan *The Lord of the Rings: The Fellowship of the Ring*.
+
+Menariknya, film-film yang muncul dalam daftar ini sebagian besar merupakan karya dari dekade 1990-an dan awal 2000-an, periode yang dianggap sebagai era keemasan perfilman modern. Beberapa film seperti *Spirited Away* juga menunjukkan bahwa animasi dari Jepang mampu bersaing di panggung internasional dengan skor tinggi. Film *Life Is Beautiful*, yang berasal dari Italia, juga menunjukkan bahwa karya non-Hollywood mampu mendapatkan pengakuan luas.
+
+Secara keseluruhan, grafik ini menunjukkan kecenderungan preferensi penonton terhadap film-film dengan tema kuat, penceritaan mendalam, dan kualitas sinematik yang tinggi. Analisis seperti ini bisa sangat bermanfaat dalam pembuatan sistem rekomendasi film, karena memperlihatkan pola-pola yang disukai oleh audiens global.
 
 ## Data Preparation
-Pada tahap Data Preparation, dilakukan text cleaning untuk membersihkan teks dari tanda baca dan tautan (URL). Untuk menangani missing value, digunakan metode dropping dengan fungsi drop(). Alasan penggunaan metode ini adalah karena data yang dihapus tidak memberikan pengaruh signifikan terhadap performa model. Awalnya, dataset berjumlah 14.952 entri, dan setelah menghapus data yang memiliki missing value, jumlah data tersisa menjadi 13.229 entri.
+Pada tahap Data Preparation, dilakukan text cleaning untuk membersihkan teks dari tanda baca dan tautan (URL). Untuk menangani missing value, digunakan metode dropping dengan fungsi drop(). Alasan penggunaan metode ini adalah karena data yang dihapus tidak memberikan pengaruh signifikan terhadap performa model. Awalnya, dataset berjumlah 4000 entri, dan setelah menghapus data yang memiliki missing value, jumlah data tersisa menjadi 3795 entri.
 
-Dalam membangun sistem rekomendasi pada proyek ini, digunakan beberapa fitur utama, yaitu: ***Name, Score, Genres, Type, dan Studios.***
-- Untuk sistem rekomendasi berbasis genre, atribut yang digunakan adalah *Name* dan *Genres*.
-- Untuk sistem rekomendasi menggunakan metode Collaborative Filtering, atribut yang digunakan meliputi *Name, Score*, dan *Type*.
-- Selain itu, dilakukan juga proses **one-hot encoding** pada fitur *Type* dan *Studios* untuk mengubah variabel kategorikal menjadi format numerik yang dapat diproses oleh model pembelajaran mesin.
-- Khusus pada sistem Content-Based Filtering, dilakukan **TF-IDF Vectorization** pada fitur *Genres*. TF-IDF digunakan untuk mengubah teks genre menjadi vektor numerik berbasis frekuensi, yang kemudian digunakan untuk menghitung tingkat kemiripan antar anime menggunakan Cosine Similarity.
+Dalam membangun sistem rekomendasi pada proyek ini, digunakan beberapa fitur utama, yaitu: ***name, score, genre, vote, company, dan star.***
+- Untuk sistem rekomendasi berbasis genre, atribut yang digunakan adalah *name* dan *genre*.
+- Untuk sistem rekomendasi menggunakan metode Collaborative Filtering, atribut yang digunakan meliputi *name, score*, dan *company*.
+- Selain itu, dilakukan juga proses **one-hot encoding** pada fitur *star* dan *company* untuk mengubah variabel kategorikal menjadi format numerik yang dapat diproses oleh model pembelajaran mesin.
+- Khusus pada sistem Content-Based Filtering, dilakukan **TF-IDF Vectorization** pada fitur *genre*. TF-IDF digunakan untuk mengubah teks genre menjadi vektor numerik berbasis frekuensi, yang kemudian digunakan untuk menghitung tingkat kemiripan antar film menggunakan Cosine Similarity.
 
 ## Modelling
 Pada proyek ini, hanya digunakan dua model, yaitu Cosine Similarity dan K-Nearest Neighbor (KNN). Kedua algoritma ini digunakan untuk mengukur tingkat kesamaan antar data berdasarkan fitur-fitur yang tersedia. Model akan mempelajari kemiripan antar entri dalam dataset guna menghasilkan sistem rekomendasi yang relevan.
@@ -146,22 +222,22 @@ dimana:
 
 Untuk melakukan pengujian model, digunakan potongan kode berikut.
 ```python
-anime_recommendations('Naruto')
+film_recommendations('The Green Mile')
 ```
 
-| Name                                             | Genres                                                       |
+| name                                             | genre                                                       |
 |--------------------------------------------------|--------------------------------------------------------------|
-| Boruto Jump Festa 2016 Special                   |Action, Adventure, Comedy, Super Power                        |
-| Naruto Shippuuden                                |Action, Adventure, Comedy, Super Power                        |
-| Rekka no Honoo                                   |Action, Adventure, Martial Arts, Shounen                      |
-| Naruto Honoo no Chuunin Shiken Naruto vs Konoh...|Action, Adventure, Martial Arts, Shounen,                     |
-| Naruto Shippuuden Movie 6 Road to Ninja	         |Action, Adventure, Super Power, Martial Arts                  |
+| Kama Sutra A Tale of Love                 |Crime                        |
+| Scarface	                                |Crime                        |
+| The Cell                                  |Crime                      |
+| Carlitos Way	|Crime                     |
+| A Bronx Tale	         |Crime                  |
 
-Table 1. Hasil Pengujian Model Content Based Filtering (dengan Filter Genres).
+Table 1. Hasil Pengujian Model Content Based Filtering (dengan Filter genre).
 
-Berdasarkan Tabel 1, hasil pengujian model Content-Based Filtering (berdasarkan Genre) menunjukkan bahwa sistem berhasil merekomendasikan 5% anime teratas yang paling mirip dengan Naruto. Rekomendasi ini mencakup beberapa seri dan film yang masih berada dalam waralaba Naruto itu sendiri. Artinya, ketika seorang pengguna menyukai Naruto, sistem mampu menyarankan seri atau film lain yang masih memiliki keterkaitan erat.
+Berdasarkan Tabel 1, hasil pengujian model Content-Based Filtering (berdasarkan Genre) menunjukkan bahwa sistem berhasil merekomendasikan 5% film teratas yang paling mirip dengan The Green Mile. Rekomendasi ini mencakup beberapa seri dan film yang masih berada dalam waralaba The Green Mile itu sendiri. Artinya, ketika seorang pengguna menyukai The Green Mile, sistem mampu menyarankan seri atau film lain yang masih memiliki keterkaitan erat.
 
-Pendekatan ini bekerja dengan cara mengidentifikasi kemiripan dalam atribut genre antara Naruto dan anime lainnya, sehingga pengguna dapat menerima rekomendasi konten yang relevan dengan preferensi mereka. Dengan demikian, sistem mampu membantu pengguna menemukan tontonan lain yang sejalan dengan ketertarikan mereka terhadap Naruto.
+Pendekatan ini bekerja dengan cara mengidentifikasi kemiripan dalam atribut genre antara The Green Mile dan film lainnya, sehingga pengguna dapat menerima rekomendasi konten yang relevan dengan preferensi mereka. Dengan demikian, sistem mampu membantu pengguna menemukan tontonan lain yang sejalan dengan ketertarikan mereka terhadap The Green Mile.
 
 Kelebihan Cosine Similarity : 
   - Efisiensi Perhitungan: Memiliki kompleksitas yang rendah, sehingga sangat efisien digunakan dalam proses komputasi, terutama pada skala besar.
@@ -187,28 +263,28 @@ dimana:
 
 Hasil Pengujian Model K-Nearest Neighbor (KNN) menggunakan Euclidean Distance:
 
-Jika pengguna menyukai anime Neon Genesis Evangelion: Death & Rebirth, maka sistem merekomendasikan beberapa anime lain yang memiliki kemiripan berdasarkan kedekatan jarak fitur, antara lain:
+Jika pengguna menyukai film Heavens Gate, maka sistem merekomendasikan beberapa film lain yang memiliki kemiripan berdasarkan kedekatan jarak fitur, antara lain:
 
 Berikut ini adalah aplikasi yang juga mungkin akan disukai :
-| Anime Name                                   | Similarity Score |
+| Nama Film                                   | Similarity Score |
 |----------------------------------------------|------------------|
-| Neon Genesis Evangelion Death Rebirth        | 100.0%           |
-| Neon Genesis Evangelion The End of Evangelion| 98.94%           |
-| Kekkaishi TV                                 | 98.59%           |
-| Doraemon Doraemon Comes Back                 | 98.59%           |
-| Dr Slump Aralechan                           | 98.59%           |
+| Heavens Gate	        | 100.0%           |
+| Fright Night	| 98.55%           |
+| A Passage to India	                                 | 98.53%           |
+| Crossing Delancey	98.                 | 98.27%           |
+| Stir Crazy	                           | 98.00%           |
 
 Tabel 2. Hasil Pengujian Model K-Nearest Neighbor
 
-Berdasarkan Tabel 2, model K-Nearest Neighbor (KNN) menghasilkan rekomendasi anime yang memiliki kemiripan berdasarkan fitur-fitur seperti Name, Score, Type, dan Studios. Ketika pengguna menyukai anime Neon Genesis Evangelion: Death & Rebirth, model berhasil memberikan rekomendasi anime yang dinilai serupa berdasarkan pola data yang telah dipelajari.
+Berdasarkan Tabel 2, model K-Nearest Neighbor (KNN) menghasilkan rekomendasi film yang memiliki kemiripan berdasarkan fitur-fitur seperti Name, Score, Type, dan Studios. Ketika pengguna menyukai film Heavens Gate, model berhasil memberikan rekomendasi film yang dinilai serupa berdasarkan pola data yang telah dipelajari.
 
 Rekomendasi yang dihasilkan meliputi :
-- Neon Genesis Evangelion: Death & Rebirth (100.00%)
-- Neon Genesis Evangelion: The End of Evangelion (98.94%)
-- Kekkaishi (TV) (98.59%)
-- Doraemon: Doraemon Comes Back (98.59%)
-- Dr. Slump: Arale-chan (98.59%)
-Persentase yang tercantum menunjukkan tingkat kemiripan relatif dari masing-masing anime terhadap anime acuan. Hasil ini menunjukkan bahwa model KNN dapat secara efektif mengidentifikasi dan merekomendasikan anime-anime dengan karakteristik yang serupa. Pendekatan ini sangat membantu pengguna dalam menemukan konten yang relevan dan sesuai dengan preferensi mereka berdasarkan anime yang telah disukai sebelumnya.
+- Heavens Gate (100.00%)
+- Fright Night (98.55%)
+- A Passage To India (TV) (98.53%)
+- Crossing Delancey 98. (98.27%)
+- Stir Crazy (98.00%)
+Persentase yang tercantum menunjukkan tingkat kemiripan relatif dari masing-masing film terhadap film acuan. Hasil ini menunjukkan bahwa model KNN dapat secara efektif mengidentifikasi dan merekomendasikan film-film dengan karakteristik yang serupa. Pendekatan ini sangat membantu pengguna dalam menemukan konten yang relevan dan sesuai dengan preferensi mereka berdasarkan film yang telah disukai sebelumnya.
 
 Kelebihan K-Nearest Neighbor (KNN):
 1. Waktu pelatihan yang sangat cepat
@@ -241,9 +317,9 @@ dimana:
 
 Interpretasi Hasil Presisi Berdasarkan Tabel 1:
 
-Berdasarkan Tabel 1. Hasil Pengujian Model Content Based Filtering (dengan Filter Genres), diketahui bahwa nilai presisi model untuk rekomendasi Top-5 adalah sempurna, yakni 5 dari 5 atau 100%. Artinya, semua rekomendasi yang diberikan oleh model merupakan anime yang memiliki genre serupa dengan anime Naruto, seperti Action, Adventure, Comedy, Drama, Fantasy, Shounen, dan Super Power.
+Berdasarkan Tabel 1. Hasil Pengujian Model Content Based Filtering (dengan Filter genre), diketahui bahwa nilai presisi model untuk rekomendasi Top-5 adalah sempurna, yakni 5 dari 5 atau 100%. Artinya, semua rekomendasi yang diberikan oleh model merupakan film yang memiliki genre serupa dengan film The Green Mile, yakni Crime.
 
-Presisi yang tinggi ini mengindikasikan bahwa model memiliki performa yang sangat baik dalam mengidentifikasi item yang relevan sesuai preferensi pengguna. Lima rekomendasi teratas yang dihasilkan model terbukti konsisten dalam menyajikan anime dengan genre yang sama atau sangat mirip dengan Naruto. Dengan demikian, model Content Based Filtering ini efektif dalam membantu pengguna menemukan tontonan yang sesuai dengan minat mereka.
+Presisi yang tinggi ini mengindikasikan bahwa model memiliki performa yang sangat baik dalam mengidentifikasi item yang relevan sesuai preferensi pengguna. Lima rekomendasi teratas yang dihasilkan model terbukti konsisten dalam menyajikan film dengan genre yang sama atau sangat mirip dengan The Green Mile. Dengan demikian, model Content Based Filtering ini efektif dalam membantu pengguna menemukan tontonan yang sesuai dengan minat mereka.
 
 ### 2. Skor Calinski-Harabasz
 Metrik ini digunakan untuk mengevaluasi hasil dari algoritma klastering. Semakin tinggi nilai Calinski-Harabasz, semakin baik performa klastering, karena menunjukkan bahwa klaster yang terbentuk memiliki jarak antar klaster yang besar dan kepadatan internal klaster yang tinggi.
@@ -264,14 +340,14 @@ Penjelasan :
 
 Untuk melakukan pengujian pada model, digunakan kode berikut.
 ```python
-calinski_harabasz_score(data_baru, animedata_name)
+calinski_harabasz_score(data_baru, filmdata_name)
 ```
 Dan didapatkan score dari pengujian model.
 ```
-3.1613291729405617
+0.8370911010140509
 ```
 
-Hasil evaluasi menunjukkan bahwa pemisahan antar kluster dalam model ini belum optimal, yang ditunjukkan oleh nilai skor Calinski-Harabasz (CH) yang relatif rendah, yaitu sebesar 3.161. Nilai CH yang rendah mengindikasikan bahwa data dalam masing-masing kluster belum cukup kompak dan antar kluster belum cukup terpisah.
+Hasil evaluasi menunjukkan bahwa pemisahan antar kluster dalam model ini belum optimal, yang ditunjukkan oleh nilai skor Calinski-Harabasz (CH) yang relatif rendah, yaitu sebesar 0.837. Nilai CH yang rendah mengindikasikan bahwa data dalam masing-masing kluster belum cukup kompak dan antar kluster belum cukup terpisah.
 
 Kondisi ini dapat menyebabkan sistem merekomendasikan aplikasi yang kurang relevan dengan preferensi pengguna, karena pengelompokan yang dilakukan belum mencerminkan struktur data yang jelas. Oleh karena itu, perlu dilakukan evaluasi ulang terhadap parameter model atau metode fitur yang digunakan agar pemisahan kluster dapat ditingkatkan dan kualitas rekomendasi menjadi lebih akurat.
 
@@ -302,39 +378,37 @@ Davies-Bouldin Score (DB) didefinisikan sebagai rata-rata dari nilai-nilai R unt
 
 Untuk melakukan pengujian model, digunakan potongan kode berikut.
 ```python
-davies_bouldin_score(data_baru, animedata_name)
+davies_bouldin_score(data_baru, filmdata_name)
 ```
 Dan didapatkan skor dari pengujian model.
 ```python
-0.7864266764751376
+1.0766974943290932
 ```
 
-Evaluasi menggunakan metrik Davies-Bouldin (DB) menghasilkan skor sebesar 0.7864266764751376, yang tergolong cukup rendah. Nilai ini menunjukkan bahwa model telah berhasil membentuk klaster dengan tingkat pemisahan yang cukup baik antar kelompok data. Dengan demikian, dapat disimpulkan bahwa kualitas pengelompokan yang dihasilkan model cukup efektif dalam memisahkan data berdasarkan kemiripan fitur.
-
-Kondisi ini berkontribusi positif terhadap akurasi sistem rekomendasi, yang mampu menghasilkan daftar anime yang relevan dengan preferensi pengguna. Artinya, model mampu mengelompokkan data dengan baik dan mendasari hasil rekomendasi yang sesuai dengan karakteristik anime yang disukai pengguna.
-
-Metrik-metrik ini memberikan gambaran menyeluruh terhadap kinerja model dari sisi akurasi prediksi dan kualitas pemisahan data dalam tugas klastering.
+Skor Davies-Bouldin (DB) sebesar 1.08 menunjukkan bahwa hasil klasterisasi yang dilakukan cukup baik, dengan klaster yang relatif terpisah dan kompak meskipun masih ada ruang untuk perbaikan. Skor ini berada pada kisaran yang umumnya dianggap layak untuk digunakan dalam analisis lebih lanjut, seperti segmentasi data atau sistem rekomendasi. Semakin rendah skor DB, semakin baik kualitas klasterisasi, karena menunjukkan bahwa klaster-klaster saling berjauhan dan masing-masing memiliki penyebaran data yang kecil. Oleh karena itu, skor ini mengindikasikan bahwa struktur klaster sudah terbentuk dengan cukup baik, namun tetap bisa dioptimalkan misalnya dengan menyesuaikan jumlah klaster atau melakukan praproses data tambahan.
 
 
 
 # Referensi
 
-1. https://id.wikipedia.org/wiki/Anime#:~:text=4.2%20Bacaan%20terkait-,Definisi%20dan%20penggunaan,animasi%20yang%20dibuat%20di%20Jepang%22.
+1. https://doi.org/10.1007/978-0-387-85820-3\_3](https://doi.org/10.1007/978-0-387-85820-3_3
 
-2. https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/20612/19925
+2. https://id.wikipedia.org/wiki/film#:~:text=4.2%20Bacaan%20terkait-,Definisi%20dan%20penggunaan,animasi%20yang%20dibuat%20di%20Jepang%22.
 
-3. https://journal.mediapublikasi.id/index.php/logic/article/view/4299
+3. https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/20612/19925
 
-4. https://www.researchgate.net/publication/274712918_Rekomendasi_Anime_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre
+4. https://journal.mediapublikasi.id/index.php/logic/article/view/4299
 
-5. http://repository.uin-malang.ac.id/18842/1/18842.pdf
+5. https://www.researchgate.net/publication/274712918_Rekomendasi_Anime_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre
 
-6. https://medium.com/geekculture/cosine-similarity-and-cosine-distance-48eed889a5c4
+6. http://repository.uin-malang.ac.id/18842/1/18842.pdf
 
-7. https://medium.com/bee-solution-partners/cara-kerja-algoritma-k-nearest-neighbor-k-nn-389297de543e
+7. https://medium.com/geekculture/cosine-similarity-and-cosine-distance-48eed889a5c4
 
-8. https://esairina.medium.com/memahami-confusion-matrix-accuracy-precision-recall-specificity-dan-f1-score-610d4f0db7cf
+8. https://medium.com/bee-solution-partners/cara-kerja-algoritma-k-nearest-neighbor-k-nn-389297de543e
 
-9. https://medium.com/@haataa/how-to-measure-clustering-performances-when-there-are-no-ground-truth-db027e9a871c
+9. https://esairina.medium.com/memahami-confusion-matrix-accuracy-precision-recall-specificity-dan-f1-score-610d4f0db7cf
 
-10. https://ieeexplore.ieee.org/document/4766909
+10. https://medium.com/@haataa/how-to-measure-clustering-performances-when-there-are-no-ground-truth-db027e9a871c
+
+11. https://ieeexplore.ieee.org/document/4766909
