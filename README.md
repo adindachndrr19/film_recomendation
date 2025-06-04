@@ -7,7 +7,7 @@ Film merupakan media hiburan favorit di berbagai kalangan dan kini dapat diakses
 
 Bagi pengguna, sistem ini memungkinkan mereka menemukan film baru yang sesuai minat, menjelajahi genre yang belum pernah ditonton, dan mendapatkan rekomendasi sesuai dengan suasana hati mereka. Sementara bagi perusahaan, sistem ini berpotensi meningkatkan jumlah penonton, menyajikan konten yang lebih bervariasi, meningkatkan kepuasan pengguna, serta memahami pola preferensi penonton terhadap film.
 
-Secara keseluruhan, sistem rekomendasi ini dapat menjadi solusi yang efektif dalam membantu pengguna dalam menemukan judul film yang cocok dengan minat mereka, sekaligus meningkatkan kualitas pengalaman menonton secara menyeluruh[[4](https://www.researchgate.net/publication/274712918_Rekomendasi_film_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre)].
+Secara keseluruhan, sistem rekomendasi ini dapat menjadi solusi yang efektif dalam membantu pengguna dalam menemukan judul film yang cocok dengan minat mereka, sekaligus meningkatkan kualitas pengalaman menonton secara menyeluruh[[4](https://www.researchgate.net/publication/312031321_Interactive_Movie_Recommendation_Through_Latent_Semantic_Analysis_and_Storytelling)].
 
 
 ## Business Understanding
@@ -204,11 +204,11 @@ Presisi yang tinggi ini mengindikasikan bahwa model memiliki performa yang sanga
 
 1. https://id.wikipedia.org/wiki/film#:~:text=4.2%20Bacaan%20terkait-,Definisi%20dan%20penggunaan,animasi%20yang%20dibuat%20di%20Jepang%22.
 
-2. https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/20612/19925
+2. https://media.neliti.com/media/publications/504836-none-ed381ca6.pdf
 
 3. https://journal.mediapublikasi.id/index.php/logic/article/view/4299
 
-4. https://www.researchgate.net/publication/274712918_Rekomendasi_film_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre
+4. https://www.researchgate.net/publication/312031321_Interactive_Movie_Recommendation_Through_Latent_Semantic_Analysis_and_Storytelling
 
 5. http://repository.uin-malang.ac.id/18842/1/18842.pdf
 
