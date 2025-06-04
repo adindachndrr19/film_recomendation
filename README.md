@@ -1,119 +1,31 @@
-# Laporan Proyek Machine Learning -  Adinda Chandra Ayu Kusumawardhana
+# Laporan Proyek Machine Learning -  Muhammad Nurul Fatwa Al Fajar
 
 ## Project Overview
 ![Film](https://github.com/user-attachments/assets/8d88be1f-b881-41c3-a158-3accf4041b41)
 
-## Project Overview: Film Recommendation System
+Film merupakan media hiburan favorit di berbagai kalangan dan kini dapat diakses melalui banyak platform streaming. Meski begitu, banyaknya judul yang tersedia terkadang menyulitkan pengguna aplikasi dalam memilih film yang sesuai dengan preferensi mereka masing masing. Untuk mengatasi permasalahan ini, pada penelitian ini mengajukan pengembangan sistem rekomendasi[[2](https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/20612/19925)]. Sistem ini dirancang untuk Menemukan Nama film Yang Dicari serta genre yang sama dengan film Tersebut. Berdasarkan data tersebut, sistem dapat menyarankan film yang paling sesuai dengan selera individu[[3](https://journal.mediapublikasi.id/index.php/logic/article/view/4299)].
 
-### Tujuan
+Bagi pengguna, sistem ini memungkinkan mereka menemukan film baru yang sesuai minat, menjelajahi genre yang belum pernah ditonton, dan mendapatkan rekomendasi sesuai dengan suasana hati mereka. Sementara bagi perusahaan, sistem ini berpotensi meningkatkan jumlah penonton, menyajikan konten yang lebih bervariasi, meningkatkan kepuasan pengguna, serta memahami pola preferensi penonton terhadap film.
 
-Membangun sebuah **sistem rekomendasi film berbasis konten (content-based filtering)** yang dapat menyarankan film serupa berdasarkan data metadata seperti genre, skor, dan sinopsis. Sistem ini diimplementasikan menggunakan Python dan dieksekusi melalui Google Colab.
-
----
-
-### Dataset
-
-Dataset diambil dari Kaggle:
-📦 **"Movies Updated Data"** oleh [Ashish Kumar Jayswal](https://www.kaggle.com/datasets/ashishkumarjayswal/movies-updated-data)
-File utama: `movies_updated.csv`
-
-Isi dataset:
-
-* 25 kolom seperti: `Name`, `Genre`, `Score`, `Director`, `Votes`, `Budget`, `Gross`, `Runtime`, dll.
-* Fokus utama hanya pada kolom: `Name`, `Score`, `Genre`, `Company`, `Star`.
-
----
-
-### Langkah-Langkah Proyek
-
-1. **Inisialisasi & Setup**
-
-   * Menghubungkan Google Drive dan menyiapkan API Kaggle untuk mengunduh dataset.
-   * Melakukan unzip dan membaca file `.csv` dengan Pandas.
-
-2. **Data Understanding**
-
-   * Menampilkan statistik dasar: jumlah data, informasi kolom, tipe data.
-   * Mengecek missing values dan struktur konten data.
-
-3. **Preprocessing**
-
-   * Membersihkan teks dan menggabungkan beberapa fitur deskriptif untuk dijadikan input.
-   * Menggabungkan kolom seperti `Genre`, `Star`, `Company`, dan `Director` menjadi satu string sebagai basis pencocokan konten.
-
-4. **Ekstraksi Fitur**
-
-   * Menggunakan **TF-IDF Vectorizer** untuk mengubah teks menjadi vektor numerik.
-   * Menerapkan **Cosine Similarity** untuk mengukur kemiripan antar film.
-
-5. **Sistem Rekomendasi**
-
-   * Implementasi fungsi untuk merekomendasikan 10 film berdasarkan film input pengguna.
-
-6. **Evaluasi (Opsional)**
-
-   * Terdapat library untuk evaluasi clustering seperti:
-
-     * `calinski_harabasz_score`
-     * `davies_bouldin_score`
-   * Namun, tidak terlihat adanya analisis evaluasi model secara eksplisit dalam output awal.
-
----
-
-### Algoritma dan Teknologi
-
-* **TF-IDF (Term Frequency-Inverse Document Frequency)**: Teknik representasi teks untuk mengukur pentingnya kata dalam dokumen.
-* **Cosine Similarity**: Metode pengukuran kemiripan antar dua vektor dalam ruang multidimensi.
-* **Nearest Neighbors** (sklearn): Siap digunakan untuk pendekatan KNN atau pengelompokan alternatif.
-* **Matplotlib & Seaborn**: Visualisasi data.
-
----
-
-### Referensi Jurnal dan Teori
-
-1. **Content-Based Recommendation**
-
-   * Lops, P., de Gemmis, M., & Semeraro, G. (2011). *Content-based recommender systems: State of the art and trends*. In Recommender Systems Handbook.
-     [https://doi.org/10.1007/978-0-387-85820-3\_3](https://doi.org/10.1007/978-0-387-85820-3_3)
-
-2. **TF-IDF and Text Similarity**
-
-   * Ramos, J. (2003). *Using TF-IDF to determine word relevance in document queries*.
-     Proceedings of the First Instructional Conference on Machine Learning.
-
-3. **Recommender System Overview**
-
-   * Ricci, F., Rokach, L., & Shapira, B. (2015). *Recommender Systems: Introduction and Challenges*. In Recommender Systems Handbook.
-
----
-
-### 📌 Catatan Tambahan
-
-* Proyek ini cocok sebagai studi kasus awal dalam bidang **Rekomendasi Berbasis Konten**.
-* Dapat dikembangkan ke sistem **Hybrid** dengan Collaborative Filtering di masa depan.
-* Perluasan dengan evaluasi metrik seperti precision\@k dan recall\@k bisa menjadi langkah lanjutan.
-
----
+Secara keseluruhan, sistem rekomendasi ini dapat menjadi solusi yang efektif dalam membantu pengguna dalam menemukan judul film yang cocok dengan minat mereka, sekaligus meningkatkan kualitas pengalaman menonton secara menyeluruh[[4](https://www.researchgate.net/publication/274712918_Rekomendasi_film_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre)].
 
 
 ## Business Understanding
-Sistem rekomendasi film berpotensi memberikan berbagai manfaat signifikan, baik bagi penonton maupun penyedia layanan streaming. Bagi pengguna, sistem ini mempermudah dalam menemukan film yang sesuai dengan minat secara lebih praktis dan efektif. Sementara itu, bagi platform streaming, sistem ini dapat meningkatkan interaksi pengguna, memperkuat loyalitas penonton, serta membantu operasional platform menjadi lebih efisien dan responsif terhadap kebutuhan pengguna.[[5](http://repository.uin-malang.ac.id/18842/1/18842.pdf)]
+Sistem rekomendasi film berpotensi memberikan berbagai manfaat signifikan, baik bagi penonton maupun penyedia layanan streaming. Bagi pengguna, sistem ini mempermudah dalam menemukan film yang sesuai dengan minat secara lebih praktis dan efektif. Sementara itu, bagi platform streaming, sistem ini dapat meningkatkan interaksi pengguna, memperkuat loyalitas penonton, serta membantu operasional platform menjadi lebih efisien dan responsif terhadap kebutuhan pengguna. [[5](http://repository.uin-malang.ac.id/18842/1/18842.pdf)]
 
 ## Problem Statements
 - Bagaimana membangun sistem rekomendasi film yang menyarankan tontonan kepada pengguna dengan mengacu pada genre yang diminati?
-- Bagaimana penyedia layanan streaming dapat menyarankan film yang belum pernah ditonton oleh pengguna dengan memanfaatkan data penilaian yang telah diberikan?
-- Bagaimana membangun model rekomendasi menggunakan pendekatan Cosine Similarity dan algoritma K-Nearest Neighbor?
-- Bagaimana mengevaluasi kinerja dari model sistem rekomendasi yang sudah dikembangkan?
+- Bagaimana penyedia layanan streaming dapat menyarankan film dengan genre yang sama dengan judul yang sebelumnya ditonton?
+- Bagaimana membangun model rekomendasi menggunakan pendekatan Cosine Similarity?
 
 ## Goals
 Untuk menangani permasalahan tersebut, dirancanglah sebuah sistem rekomendasi dengan tujuan sebagai berikut :
 - Menyajikan daftar Top-N rekomendasi film kepada pengguna berdasarkan genre yang diminati.
-- Memberikan sejumlah rekomendasi film yang relevan dengan minat pengguna dan belum pernah ditonton sebelumnya.
-- Mengembangkan model sistem rekomendasi menggunakan pendekatan Cosine Similarity dan K-Nearest Neighbor berdasarkan fitur yang telah diekstraksi dari dataset.
-- Mengevaluasi kinerja model sistem rekomendasi dengan menerapkan metrik pengukuran yang sesuai
+- Memberikan sejumlah rekomendasi film yang relevan dengan minat pengguna dan Judul film lain yang memiliki genre yang sama.
+- Mengembangkan model sistem rekomendasi menggunakan pendekatan Cosine Similarity berdasarkan fitur yang telah diekstraksi dari dataset.
 
 Solution Approach
-Data dianalisis melalui proses ***Exploratory Data Analysis (EDA)*** dan ***divisualisasikan*** untuk memahami pola serta karakteristik yang ada. Untuk memperoleh model prediksi yang optimal, dilakukan ***pembersihan data***, seperti menghapus ***nilai yang hilang*** (missing value), memeriksa keberadaan ***data duplikat***, menghapus karakter ***alfanumerik*** yang tidak relevan, serta menghilangkan ***tautan*** (URL). Selanjutnya, data ***kategorikal dikonversi menjadi format numerik*** menggunakan metode ***one-hot encoding***. Guna menilai performa model yang dibangun, digunakan metrik evaluasi seperti ***Precision***, ***Score Calinski-Harabasz***, dan ***Skor Davies-Bouldin***.
+Data dianalisis melalui proses ***Exploratory Data Analysis (EDA)*** dan ***divisualisasikan*** untuk memahami pola serta karakteristik yang ada. Untuk memperoleh model prediksi yang optimal, dilakukan ***pembersihan data***, seperti menghapus ***nilai yang hilang*** (missing value), memeriksa keberadaan ***data duplikat***, menghapus karakter ***alfanumerik*** yang tidak relevan, serta menghilangkan ***tautan*** (URL). Selanjutnya, data ***kategorikal dikonversi menjadi format numerik*** menggunakan metode ***one-hot encoding***. Guna menilai performa model yang dibangun, digunakan metrik evaluasi seperti ***Precision***.
 
 ## Data Understanding
 EDA - Penjelasan Setiap Variabel
@@ -141,22 +53,40 @@ Pada model yang saya buat kali ini dataset yang dipakai memiliki spesifikasi sep
 - Ditemukan missing value pada kolom gross sebanyak 169 data, pada kolom rating sebanyak 40 data, 10 data pada kolom company, 1 data pada kolom writer dan juga kolom star.
 - Tidak ditemukan adanya data duplikat dalam dataset ini.
 
-| Kolom        | Tipe Data        | Deskripsi                                                                                     | Cara Pakai di Model                                                                                      |
-| ------------ | ---------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| **name**     | `object`         | Judul film.                                                                                   | Sebagai label/ID unik; bisa juga digunakan untuk menampilkan hasil rekomendasi.                          |
-| **rating**   | `float`/`object` | Rating MPAA (misal “PG-13”, “R”, “G”).                                                        | Fitur kategorikal: mengelompokkan konten sesuai batas usia.                                              |
-| **genre**    | `object`         | Kategori/jenis film (misal “Action”, “Comedy”, “Drama”). Bisa berisi beberapa genre per film. | Fitur multi-label: bisa di-encode dengan one-hot atau embedding genre.                                   |
-| **year**     | `int`            | Tahun produksi film.                                                                          | Fitur numerik: mengukur umur film, tren preferensi berdasarkan era.                                      |
-| **released** | `object`         | Tanggal rilis (misal “July 16, 2010”).                                                        | Bisa di-parse jadi tanggal (`datetime`) untuk ekstrak bulan, kuartal, hari dalam seminggu, dll.          |
-| **score**    | `float`          | Skor rata-rata pengguna (misal IMDb score).                                                   | Fitur numerik: merepresentasikan popularitas/penilaian umum film.                                        |
-| **votes**    | `int`            | Jumlah suara atau ulasan pengguna.                                                            | Fitur numerik: proxy untuk seberapa banyak orang yang menilai—indikator popularitas.                     |
-| **director** | `object`         | Nama sutradara.                                                                               | Fitur kategorikal: di-encode (label/one-hot/embedding). Sutradara populer bisa meningkatkan rekomendasi. |
-| **writer**   | `object`         | Nama penulis skenario.                                                                        | Serupa `director`: fitur kategorikal untuk menangkap gaya penulisan.                                     |
-| **star**     | `object`         | Nama aktor/aktris utama.                                                                      | Fitur kategorikal penting—aktor favorit pengguna dapat memengaruhi rekomendasi.                          |
-| **country**  | `object`         | Negara produksi film.                                                                         | Fitur kategorikal: mengelompokkan selera berdasarkan wilayah.                                            |
-| **budget**   | `float`/`int`    | Anggaran pembuatan film (dalam USD).                                                          | Fitur numerik: film ber-anggaran besar cenderung produksi lebih “berkelas” dan populer.                  |
-| **gross**    | `float`/`int`    | Pendapatan box-office (dalam USD).                                                            | Fitur numerik: proxy keberhasilan komersial—sering dikaitkan dengan popularitas massal.                  |
-| **company**  | `object`         | Rumah produksi atau studio (misal “Warner Bros.”).                                            | Fitur kategorikal: studio besar biasanya memproduksi film dengan kualitas/genre tertentu.                |
+# Penjelasan Kolom dalam Dataframe Anime
+
+Dataset anime ini memuat berbagai informasi penting pada setiap kolom, yang dijelaskan sebagai berikut :
+
+1. ***film***: Sebagai label/ID unik; bisa juga digunakan untuk menampilkan hasil rekomendasi.
+
+2. ***rating***: Fitur kategorikal: mengelompokkan konten sesuai batas usia.
+
+3. ***genre***: Fitur multi-label: bisa di-encode dengan one-hot atau embedding genre.
+
+4. ***year***: Fitur numerik: mengukur umur film, tren preferensi berdasarkan era.
+
+5. ***released***: Bisa di-parse jadi tanggal (`datetime`) untuk ekstrak bulan, kuartal, hari dalam seminggu, dll.
+
+6. ***score***: Fitur numerik: merepresentasikan popularitas/penilaian umum film.
+
+7. ***votes***: Fitur numerik: proxy untuk seberapa banyak orang yang menilai—indikator popularitas.
+
+8. ***director***: Fitur kategorikal: di-encode (label/one-hot/embedding). Sutradara populer bisa meningkatkan rekomendasi.
+
+9. ***writer***: Serupa `director`: fitur kategorikal untuk menangkap gaya penulisan.
+
+10. ***star***: Fitur kategorikal penting—aktor favorit pengguna dapat memengaruhi rekomendasi.
+
+11. ***country***: Fitur kategorikal: mengelompokkan selera berdasarkan wilayah.
+
+12. ***budget***: Fitur numerik: film ber-anggaran besar cenderung produksi lebih “berkelas” dan populer.
+
+13. ***gross***: Fitur numerik: proxy keberhasilan komersial—sering dikaitkan dengan popularitas massal.
+
+14. ***company***: Fitur kategorikal: studio besar biasanya memproduksi film dengan kualitas/genre tertentu.
+
+15. ***runtime***: Durasi film berjalan.
+
 
 ![gambar1](https://github.com/user-attachments/assets/87fe85b6-b4c3-4c7f-b0f4-1d0abbfb68fb)
 
@@ -174,7 +104,6 @@ Gambar di atas menunjukkan **diagram pie distribusi perusahaan produksi film** y
 * **Twentieth Century Fox** sebanyak **3,24%**.
 
 Hal ini mengindikasikan bahwa industri film dalam dataset bersifat sangat **terdesentralisasi**, di mana sebagian besar film diproduksi oleh banyak perusahaan kecil yang tersebar, bukan hanya oleh studio-studio besar Hollywood. Analisis seperti ini penting untuk memahami dominasi dan keragaman dalam industri film.
-
 
 ![gambar3](https://github.com/user-attachments/assets/038926b0-f8f2-4e71-93fa-d98a73becaae)
 
@@ -196,10 +125,11 @@ Secara keseluruhan, grafik ini menunjukkan kecenderungan preferensi penonton ter
 Pada tahap Data Preparation, dilakukan text cleaning untuk membersihkan teks dari tanda baca dan tautan (URL). Untuk menangani missing value, digunakan metode dropping dengan fungsi drop(). Alasan penggunaan metode ini adalah karena data yang dihapus tidak memberikan pengaruh signifikan terhadap performa model. Awalnya, dataset berjumlah 4000 entri, dan setelah menghapus data yang memiliki missing value, jumlah data tersisa menjadi 3795 entri.
 
 Dalam membangun sistem rekomendasi pada proyek ini, digunakan beberapa fitur utama, yaitu: ***name, score, genre, vote, company, dan star.***
+- Untuk bagian set_indexing kolom yang digunakan kolom *name*.
 - Untuk sistem rekomendasi berbasis genre, atribut yang digunakan adalah *name* dan *genre*.
 - Untuk sistem rekomendasi menggunakan metode Collaborative Filtering, atribut yang digunakan meliputi *name, score*, dan *company*.
-- Selain itu, dilakukan juga proses **one-hot encoding** pada fitur *star* dan *company* untuk mengubah variabel kategorikal menjadi format numerik yang dapat diproses oleh model pembelajaran mesin.
 - Khusus pada sistem Content-Based Filtering, dilakukan **TF-IDF Vectorization** pada fitur *genre*. TF-IDF digunakan untuk mengubah teks genre menjadi vektor numerik berbasis frekuensi, yang kemudian digunakan untuk menghitung tingkat kemiripan antar film menggunakan Cosine Similarity.
+- Selain itu, dilakukan juga proses **one-hot encoding** pada fitur *star* dan *company* untuk mengubah variabel kategorikal menjadi format numerik yang dapat diproses oleh model pembelajaran mesin.
 
 ## Modelling
 Pada proyek ini, hanya digunakan dua model, yaitu Cosine Similarity dan K-Nearest Neighbor (KNN). Kedua algoritma ini digunakan untuk mengukur tingkat kesamaan antar data berdasarkan fitur-fitur yang tersedia. Model akan mempelajari kemiripan antar entri dalam dataset guna menghasilkan sistem rekomendasi yang relevan.
@@ -247,65 +177,13 @@ Kekurangan Cosine Similarity:
   - Mengabaikan Besarnya Nilai (Magnitudo): Hanya mempertimbangkan arah vektor dan tidak memperhitungkan besarannya. 
   - Rentan terhadap Nilai Ekstrem: Dua vektor dengan magnitudo yang sangat berbeda tetap dapat dianggap mirip jika memiliki arah yang sama, meskipun secara nilai sesungguhnya cukup jauh.
 
-## K-Nearest Neighbor
-K-Nearest Neighbor (KNN) merupakan salah satu algoritma paling sederhana dalam klasifikasi dan regresi. Metode ini bekerja dengan mengklasifikasikan suatu data berdasarkan kedekatannya terhadap sejumlah data tetangga terdekat dalam ruang fitur. Jumlah tetangga yang diperhitungkan ditentukan oleh parameter K. Semakin dekat jarak antara data baru dengan data dalam kelompok tertentu, maka semakin besar kemungkinan data baru tersebut termasuk ke dalam kelompok tersebut.
-
-Sebagai contoh, jika K = 1, maka klasifikasi dilakukan berdasarkan satu tetangga terdekat saja—artinya data baru akan diberi label yang sama dengan data yang paling mirip atau paling dekat jaraknya.[[7](https://medium.com/bee-solution-partners/cara-kerja-algoritma-k-nearest-neighbor-k-nn-389297de543e)]
-
-K-Nearest Neighbor dituliskan dalam rumus:
-
- $$Euclidean Distance (P, Q) = sqrt(∑(Pi - Qi)^2)$$
-
-dimana:
-- Pi merepresentasikan nilai fitur ke-i dari titik data P.
-- Qi merepresentasikan nilai fitur ke-i dari titik data Q, yang merupakan bagian dari kumpulan data D.
-- ∑ adalah simbol yang digunakan untuk menjumlahkan seluruh nilai fitur dari data yang dibandingkan.
-
-Hasil Pengujian Model K-Nearest Neighbor (KNN) menggunakan Euclidean Distance:
-
-Jika pengguna menyukai film Heavens Gate, maka sistem merekomendasikan beberapa film lain yang memiliki kemiripan berdasarkan kedekatan jarak fitur, antara lain:
-
-Berikut ini adalah aplikasi yang juga mungkin akan disukai :
-| Nama Film                                   | Similarity Score |
-|----------------------------------------------|------------------|
-| Heavens Gate	        | 100.0%           |
-| Fright Night	| 98.55%           |
-| A Passage to India	                                 | 98.53%           |
-| Crossing Delancey	98.                 | 98.27%           |
-| Stir Crazy	                           | 98.00%           |
-
-Tabel 2. Hasil Pengujian Model K-Nearest Neighbor
-
-Berdasarkan Tabel 2, model K-Nearest Neighbor (KNN) menghasilkan rekomendasi film yang memiliki kemiripan berdasarkan fitur-fitur seperti Name, Score, Type, dan Studios. Ketika pengguna menyukai film Heavens Gate, model berhasil memberikan rekomendasi film yang dinilai serupa berdasarkan pola data yang telah dipelajari.
-
-Rekomendasi yang dihasilkan meliputi :
-- Heavens Gate (100.00%)
-- Fright Night (98.55%)
-- A Passage To India (TV) (98.53%)
-- Crossing Delancey 98. (98.27%)
-- Stir Crazy (98.00%)
-Persentase yang tercantum menunjukkan tingkat kemiripan relatif dari masing-masing film terhadap film acuan. Hasil ini menunjukkan bahwa model KNN dapat secara efektif mengidentifikasi dan merekomendasikan film-film dengan karakteristik yang serupa. Pendekatan ini sangat membantu pengguna dalam menemukan konten yang relevan dan sesuai dengan preferensi mereka berdasarkan film yang telah disukai sebelumnya.
-
-Kelebihan K-Nearest Neighbor (KNN):
-1. Waktu pelatihan yang sangat cepat
-2. Algoritma yang sederhana dan mudah dipahami
-3. Tahan terhadap data pelatihan yang mengandung noise
-4. Efektif pada dataset berukuran besar
-
-Kekurangan K-Nearest Neightbor (KNN) :
-1. Penentuan nilai k menjadi bias dalam model.
-2. Komputasi yang kompleks, terutama pada data besar atau dimensi fitur tinggi.
-3. Keterbatasan memori karena harus menyimpan semua data pelatihan.
-4. Rentan terhadap atribut yang tidak relevan yang dapat memengaruhi hasil klasifikasi.
-
-
 ## Evaluation
-Metrik evaluasi digunakan untuk menilai seberapa baik performa suatu model dalam menjalankan tugasnya, baik dalam konteks klasifikasi maupun klastering. Dalam proyek ini, beberapa metrik evaluasi yang digunakan antara lain:
+Metrik evaluasi digunakan untuk menilai seberapa baik performa suatu model dalam menjalankan tugasnya. Dalam proyek ini, ada 1 metrik evaluasi yang digunakan yaitu:
 
 ### 1. Precision
 Precision digunakan dalam konteks klasifikasi untuk mengukur proporsi prediksi positif yang benar-benar relevan. Metrik ini penting untuk mengetahui seberapa akurat model dalam mengidentifikasi kelas positif dibandingkan dengan semua prediksi positif yang dibuat.
   
-Precision merupakan salah satu metrik evaluasi yang penting dalam menilai kinerja model, khususnya dalam konteks klasifikasi atau pengelompokan berbasis label. Precision mengukur proporsi prediksi positif yang benar dari keseluruhan prediksi positif yang dibuat oleh model. Nilai precision yang tinggi menunjukkan bahwa model memiliki tingkat kesalahan rendah dalam mengklasifikasikan data sebagai positif, sehingga hasil prediksi positif dapat dianggap lebih akurat dan dapat dipercaya. Dengan demikian, precision sangat membantu dalam mengevaluasi ketepatan model dalam mengenali data yang relevan dari seluruh prediksi positif yang dihasilkan[[8](https://esairina.medium.com/memahami-confusion-matrix-accuracy-precision-recall-specificity-dan-f1-score-610d4f0db7cf)].
+Precision merupakan salah satu metrik evaluasi yang penting dalam menilai kinerja model, khususnya dalam konteks klasifikasi atau pengelompokan berbasis label. Precision mengukur proporsi prediksi positif yang benar dari keseluruhan prediksi positif yang dibuat oleh model. Nilai precision yang tinggi menunjukkan bahwa model memiliki tingkat kesalahan rendah dalam mengklasifikasikan data sebagai positif, sehingga hasil prediksi positif dapat dianggap lebih akurat dan dapat dipercaya. Dengan demikian, precision sangat membantu dalam mengevaluasi ketepatan model dalam mengenali data yang relevan dari seluruh prediksi positif yang dihasilkan[[7](https://esairina.medium.com/memahami-confusion-matrix-accuracy-precision-recall-specificity-dan-f1-score-610d4f0db7cf)].
 
 Rumus Presisi Ditulis seperti ini :
 
@@ -321,94 +199,19 @@ Berdasarkan Tabel 1. Hasil Pengujian Model Content Based Filtering (dengan Filte
 
 Presisi yang tinggi ini mengindikasikan bahwa model memiliki performa yang sangat baik dalam mengidentifikasi item yang relevan sesuai preferensi pengguna. Lima rekomendasi teratas yang dihasilkan model terbukti konsisten dalam menyajikan film dengan genre yang sama atau sangat mirip dengan The Green Mile. Dengan demikian, model Content Based Filtering ini efektif dalam membantu pengguna menemukan tontonan yang sesuai dengan minat mereka.
 
-### 2. Skor Calinski-Harabasz
-Metrik ini digunakan untuk mengevaluasi hasil dari algoritma klastering. Semakin tinggi nilai Calinski-Harabasz, semakin baik performa klastering, karena menunjukkan bahwa klaster yang terbentuk memiliki jarak antar klaster yang besar dan kepadatan internal klaster yang tinggi.
-
-Calinski-Harabasz Score merupakan salah satu metrik evaluasi yang digunakan untuk menilai kualitas hasil pengelompokan (clustering). Metrik ini mengukur seberapa baik algoritma pengelompokan dalam memisahkan data ke dalam kelompok-kelompok yang padat (kompak) di dalam masing-masing cluster, sekaligus saling berjauhan (terpisah) antar cluster.
-
-Skor ini dihitung sebagai rasio antara sebaran antar cluster (antara pusat cluster) terhadap sebaran dalam cluster (antar data di dalam cluster yang sama). Semakin tinggi nilai Calinski-Harabasz (CH), semakin baik hasil pengelompokan tersebut. Kelebihan utama dari metrik ini adalah tidak memerlukan label kebenaran dasar (ground truth), sehingga sangat cocok untuk digunakan dalam metode unsupervised learning seperti clustering.[[9](https://medium.com/@haataa/how-to-measure-clustering-performances-when-there-are-no-ground-truth-db027e9a871c)]
-
-Rumus Skor Calinski-Harabasz adalah:
-
-$$CH = \frac{B}{W} \times \frac{N - k}{k - 1}$$
-
-Penjelasan :
-- B = menyatakan variabilitas antar klaster (between-cluster variance).
-- W = menunjukkan variabilitas di dalam masing-masing klaster (within-cluster variance).
-- N = merepresentasikan total jumlah data yang dianalisis.
-- k = menggambarkan jumlah klaster yang terbentuk dalam proses pengelompokan.
-
-Untuk melakukan pengujian pada model, digunakan kode berikut.
-```python
-calinski_harabasz_score(data_baru, filmdata_name)
-```
-Dan didapatkan score dari pengujian model.
-```
-0.8370911010140509
-```
-
-Hasil evaluasi menunjukkan bahwa pemisahan antar kluster dalam model ini belum optimal, yang ditunjukkan oleh nilai skor Calinski-Harabasz (CH) yang relatif rendah, yaitu sebesar 0.837. Nilai CH yang rendah mengindikasikan bahwa data dalam masing-masing kluster belum cukup kompak dan antar kluster belum cukup terpisah.
-
-Kondisi ini dapat menyebabkan sistem merekomendasikan aplikasi yang kurang relevan dengan preferensi pengguna, karena pengelompokan yang dilakukan belum mencerminkan struktur data yang jelas. Oleh karena itu, perlu dilakukan evaluasi ulang terhadap parameter model atau metode fitur yang digunakan agar pemisahan kluster dapat ditingkatkan dan kualitas rekomendasi menjadi lebih akurat.
-
-
-### 3. Skor Davies-Bouldin
-Davies-Bouldin Index mengukur rasio antara jarak dalam klaster dan jarak antar klaster. Nilai yang lebih rendah menunjukkan klaster yang lebih baik karena berarti klaster tersebut lebih terpisah dan lebih kompak.
-
-Davies-Bouldin Score adalah metrik evaluasi untuk menilai kualitas hasil pengelompokan dalam algoritma clustering. Metrik ini mengukur rata-rata tingkat kemiripan antara setiap klaster dengan klaster paling mirip lainnya. Kemiripan ini dihitung berdasarkan rasio antara sebaran dalam klaster (intra-cluster distance) dan jarak antar klaster (inter-cluster distance).
-
-Skor DB memiliki nilai minimum 0, di mana nilai yang lebih rendah menunjukkan performa pengelompokan yang lebih baik. Skor yang rendah mengindikasikan bahwa klaster-klaster yang terbentuk:
-
-- Memiliki jarak yang jauh antar satu sama lain (baik pemisahan antar klaster),
-- Dan memiliki penyebaran data yang kompak dalam masing-masing klaster.
-Sama seperti Silhouette Score, Davies-Bouldin Score tidak memerlukan label kebenaran dasar (ground truth), sehingga cocok digunakan untuk mengevaluasi model unsupervised learning. Dengan formulasi yang lebih sederhana, metrik ini memberikan cara yang efisien untuk menilai kinerja model pengelompokan secara objektif.[[10](https://ieeexplore.ieee.org/document/4766909)]
-
-Rumus dari Skor Davies-Bouldin adalah:
-
-
-$$ DB = \frac{1}{k} \sum_{i=1}^{k} \max_{j \neq i} \left( \frac{R_i + R_j}{d(c_i, c_j)} \right) $$
-
-
-Di mana:
-- k: Jumlah total klaster yang terbentuk.
-- R_i Ukuran penyebaran (radius) dari klaster ke-i, biasanya dihitung sebagai rata-rata jarak antara tiap titik dalam klaster ke pusatnya.
-- d(c_i, c_j) Jarak antara pusat klaster i dan pusat klaster j.
-
-Davies-Bouldin Score (DB) didefinisikan sebagai rata-rata dari nilai-nilai R untuk semua klaster dalam hasil pengelompokan. Nilai R ini merepresentasikan rasio antara sebaran dalam klaster (intra-cluster dispersion) dan jarak antar pusat klaster (inter-cluster distance).
-
-Untuk melakukan pengujian model, digunakan potongan kode berikut.
-```python
-davies_bouldin_score(data_baru, filmdata_name)
-```
-Dan didapatkan skor dari pengujian model.
-```python
-1.0766974943290932
-```
-
-Skor Davies-Bouldin (DB) sebesar 1.08 menunjukkan bahwa hasil klasterisasi yang dilakukan cukup baik, dengan klaster yang relatif terpisah dan kompak meskipun masih ada ruang untuk perbaikan. Skor ini berada pada kisaran yang umumnya dianggap layak untuk digunakan dalam analisis lebih lanjut, seperti segmentasi data atau sistem rekomendasi. Semakin rendah skor DB, semakin baik kualitas klasterisasi, karena menunjukkan bahwa klaster-klaster saling berjauhan dan masing-masing memiliki penyebaran data yang kecil. Oleh karena itu, skor ini mengindikasikan bahwa struktur klaster sudah terbentuk dengan cukup baik, namun tetap bisa dioptimalkan misalnya dengan menyesuaikan jumlah klaster atau melakukan praproses data tambahan.
-
-
 
 # Referensi
 
-1. https://doi.org/10.1007/978-0-387-85820-3\_3](https://doi.org/10.1007/978-0-387-85820-3_3
+1. https://id.wikipedia.org/wiki/film#:~:text=4.2%20Bacaan%20terkait-,Definisi%20dan%20penggunaan,animasi%20yang%20dibuat%20di%20Jepang%22.
 
-2. https://id.wikipedia.org/wiki/film#:~:text=4.2%20Bacaan%20terkait-,Definisi%20dan%20penggunaan,animasi%20yang%20dibuat%20di%20Jepang%22.
+2. https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/20612/19925
 
-3. https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/20612/19925
+3. https://journal.mediapublikasi.id/index.php/logic/article/view/4299
 
-4. https://journal.mediapublikasi.id/index.php/logic/article/view/4299
+4. https://www.researchgate.net/publication/274712918_Rekomendasi_film_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre
 
-5. https://www.researchgate.net/publication/274712918_Rekomendasi_Anime_dengan_Latent_Semantic_Indexing_Berbasis_Sinopsis_Genre
+5. http://repository.uin-malang.ac.id/18842/1/18842.pdf
 
-6. http://repository.uin-malang.ac.id/18842/1/18842.pdf
+6. https://medium.com/geekculture/cosine-similarity-and-cosine-distance-48eed889a5c4
 
-7. https://medium.com/geekculture/cosine-similarity-and-cosine-distance-48eed889a5c4
-
-8. https://medium.com/bee-solution-partners/cara-kerja-algoritma-k-nearest-neighbor-k-nn-389297de543e
-
-9. https://esairina.medium.com/memahami-confusion-matrix-accuracy-precision-recall-specificity-dan-f1-score-610d4f0db7cf
-
-10. https://medium.com/@haataa/how-to-measure-clustering-performances-when-there-are-no-ground-truth-db027e9a871c
-
-11. https://ieeexplore.ieee.org/document/4766909
+7. https://esairina.medium.com/memahami-confusion-matrix-accuracy-precision-recall-specificity-dan-f1-score-610d4f0db7cf
